@@ -1,8 +1,14 @@
 language: python
-python: 3.8
-dist: xenial
-install:
-  - pip install pipenv
-  - pipenv install --dev
-script:
-  - pipenv run nosetests
+name: integration-continue
+on: [push]
+jobs:
+  check-python-version:
+    runs-on: ubuntu-latest
+    steps:
+      install:
+        - pip install pipenv
+        - pipenv install --dev
+      script:
+        - pipenv run nosetests
+      with:
+        python-version: '3.8'
