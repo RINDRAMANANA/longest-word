@@ -1,15 +1,12 @@
-language: python
-name: integration-continue
+name: first-workflow
 on: [push]
 jobs:
   check-python-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.8
-      - name: Install dependencies
-        run: |
-          pip install pipenv
-          pipenv install --dev
-      - name: Script
-        run: |
-          pipenv run nosetests
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: |
+          python --version
