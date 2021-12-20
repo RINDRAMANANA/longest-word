@@ -5,10 +5,11 @@ jobs:
   check-python-version:
     runs-on: ubuntu-latest
     steps:
-      install:
-        - pip install pipenv
-        - pipenv install --dev
-      script:
-        - pipenv run nosetests
-      with:
-        python-version: '3.8'
+      - name: Set up Python 3.8
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+      - name: Script
+        run: |
+          pipenv run nosetests
